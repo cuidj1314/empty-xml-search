@@ -1,4 +1,4 @@
-package org.example
+package org.work.compareandwrite
 
 import org.dom4j.Document
 import org.dom4j.DocumentHelper
