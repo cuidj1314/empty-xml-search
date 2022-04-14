@@ -1,10 +1,10 @@
-package org.example
+package org.example.emptyxmlsearch
 
 import org.dom4j.Document
 import org.dom4j.DocumentHelper
 import java.io.File
 
-open class ReadFile {
+open class EmptyXmlSearch {
 
     fun emptyXmlSearch(inputPath: String) {
         val fileTree: FileTreeWalk = File(inputPath).walk()
