@@ -1,6 +1,4 @@
-package org.example.emptyxmlsearch
-
-import org.example.emptyxmlsearch.EmptyXmlSearch
+package org.work.emptyxmlsearch
 
 fun main(args: Array<String>) {
     val readFile = EmptyXmlSearch();

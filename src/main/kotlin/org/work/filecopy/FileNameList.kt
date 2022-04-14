@@ -1,4 +1,4 @@
-package org.example.filecopy
+package org.work.filecopy
 
 import java.nio.file.Files
 import java.nio.file.Paths

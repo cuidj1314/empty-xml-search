@@ -1,4 +1,4 @@
-package org.example.filecopy
+package org.work.filecopy
 
 fun main() {
 

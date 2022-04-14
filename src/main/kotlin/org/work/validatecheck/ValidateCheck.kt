@@ -1,4 +1,4 @@
-package org.example.validatecheck
+package org.work.validatecheck
 
 import org.dom4j.Document
 import org.dom4j.DocumentHelper
