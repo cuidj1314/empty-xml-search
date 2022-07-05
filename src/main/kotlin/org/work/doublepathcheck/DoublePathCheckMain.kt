@@ -5,7 +5,7 @@ import org.work.emptyxmlsearch.EmptyXmlSearch
 fun main(args: Array<String>) {
     val readFile = DoublePathCheck();
 //    readFile.doublePathCheck("C:\\Users\\cuidj\\Desktop\\test")
-    readFile.doublePathCheck("D:\\svn\\01_基線庫\\20211227\\20_原本ソース一式\\H\\src")
+    readFile.doublePathCheck("")
 //    list.stream().collect(Collection.groupByTo(Function.i))
     val sameMap = mutableMapOf<String, Int>()
     for (item in list) {
