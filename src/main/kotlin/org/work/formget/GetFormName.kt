@@ -21,7 +21,21 @@ open class GetFormName {
                             run {
                                 x.elements().forEach { y ->
                                     run {
-                                        if (null != y.attribute("name")) map.put(y.attribute("name").value, it.path)
+                                        if (null != y.attribute("type")) {
+                                            if (y.attribute("type").value.substringAfterLast(".") == "DynaValidatorActionFormEx") {
+                                                if (null != y.attribute("name")) map.put(
+                                                    it.path.substringBeforeLast("src") + "★" + y.attribute(
+                                                        "name"
+                                                    ).value, it.path + "〇" + it.path
+                                                )
+                                            } else {
+                                                map.put(
+                                                    it.path.substringBeforeLast("src") + "★" + y.attribute("type").value.substringAfterLast(
+                                                        "."
+                                                    ), it.path + "〇" + it.path
+                                                )
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -32,7 +46,13 @@ open class GetFormName {
                 }
             }
         map.forEach {
-            classPathGet(it.key, now + it.value.substringBefore("Java").substringAfter("src"))
+            classPathGet(
+                File(it.value.substringBefore("〇")).parent,
+                File(it.value.substringBefore("〇")).name,
+                it.key.substringAfter("★"),
+//                now + it.value.substringAfter("〇").substringBefore("Java").substringAfter("src")
+                now + it.value.substringAfter("〇").substringBeforeLast("src").substringAfterLast("src")
+            )
         }
         // 結果を出力する
         resultList.distinct().forEach { println(it) }
@@ -41,15 +61,19 @@ open class GetFormName {
     /**
      *変換後のパス編集して、リストに追加する
      */
-    private fun classPathGet(value: String, now: String) {
-        val fileTree: FileTreeWalk = File(now).walk()
+    private fun classPathGet(xmlPath: String, xmlName: String, value: String, nowPath: String) {
+        val fileTree: FileTreeWalk = File(nowPath).walk()
 
         val nameTemp = if (value.startsWith("_")) value.replace("_", "") else value
         fileTree.filter { it.isFile }
             .filter { it.extension == "java" }
             .filter { it.name.contains(nameTemp, ignoreCase = true) }
             .forEach {
-                resultList.add(it.path.substringAfter("01_ツール変換後ソース"))
+                resultList.add(
+                    xmlPath.substringAfter("20_原本ソース一式\\H\\src") + "\t" + xmlName + "\t" + File(it.path.substringAfter("01_ツール変換後ソース")).parent + "\t" + File(
+                        it.path.substringAfter("01_ツール変換後ソース")
+                    ).name
+                )
             }
 
     }
